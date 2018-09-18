@@ -1,4 +1,4 @@
-const hostname = '192.168.1.7'
+const hostname = '192.168.1.132'
 const port = 3001
 const apiDomain = 'https://api.iextrading.com/1.0'
 

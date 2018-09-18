@@ -1,6 +1,7 @@
 const requestHandler = (error, response, body) => {
   if (!error && response.statusCode == 200) {
-    return JSON.parse(body);
+    // console.log(JSON.parse(body))
+    return JSON.parse(body)
   }
 }
 

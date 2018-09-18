@@ -1,11 +1,13 @@
 const { getStocksList } = require('../api/stocks')
 const resolvers = {
   Query: {
-    hello: () => 'Hello world!',
+    hello: () => 'Hello!',
     greet: () => ({
       greeting: () => 'Greet'
     }),
-    stocks: getStocksList
+    stocks: async (parent, args, ctx, info) => await({
+      list: async () => await getStocksList(ctx)
+    })
   }
 }
 

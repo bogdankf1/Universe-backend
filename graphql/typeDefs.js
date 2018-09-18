@@ -6,12 +6,13 @@ const typeDefs = gql`
   }
 
   type Stocks {
-    list: Object
+    list: String
   }
 
   type Query {
     hello: String,
-    greet: Greeting
+    greet: Greeting,
+    stocks: Stocks
   }
 `
 
