@@ -1,12 +1,15 @@
+const fetch = require('node-fetch')
 const { getStocksList } = require('../api/stocks')
+
 const resolvers = {
   Query: {
-    hello: () => 'Hello!',
-    greet: () => ({
-      greeting: () => 'Greet'
-    }),
-    stocks: async (parent, args, ctx, info) => await({
-      list: async () => await getStocksList(ctx)
+    stocks: (_, { id }) => ({
+      list: async () => {
+        const response = await fetch(`https://api.iextrading.com/1.0/stock/market/batch?symbols=${id}&types=quote`)
+        const jsonData = await response.json()
+        // console.log(jsonData)
+        return JSON.stringify(jsonData)
+      }
     })
   }
 }

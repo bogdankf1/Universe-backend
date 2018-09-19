@@ -7,7 +7,6 @@ const getStocksList = async (ctx) => {
     url: `${apiDomain}/stock/market/batch?symbols=AAPL,BA,TSLA&types=quote`
   }
   const response = await request(options, requestHandler)
-  console.log(ctx)
   ctx.body = JSON.stringify(response)
   return JSON.stringify(response)
 }
