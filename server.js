@@ -13,7 +13,11 @@ const router = new Router()
 
 router.get('/stocks/list', getStocksList)
 
-const server = new ApolloServer({ typeDefs, resolvers })
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ ctx }) => ({ ctx })
+})
 server.applyMiddleware({ app })
 
 app.use(cors())
