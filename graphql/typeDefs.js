@@ -39,12 +39,25 @@ const typeDefs = gql`
   #   }
   # }
 
+  type SymbolItem {
+    symbol: String,
+    name: String,
+    date: String,
+    isEnabled: Boolean,
+    type: String,
+    iexId: String
+  }
+
+  type SymbolsList {
+    list: [SymbolItem]
+  }
   type Stocks {
     list: String
   }
 
   type Query {
     stocks(id: String): Stocks
+    symbols: SymbolsList
   }
 `
 

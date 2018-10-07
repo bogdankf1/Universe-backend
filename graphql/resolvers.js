@@ -1,13 +1,21 @@
 const fetch = require('node-fetch')
 const { getStocksList } = require('../api/stocks')
+const { apiDomain } = require('../constants/constants')
 
 const resolvers = {
   Query: {
     stocks: (_, { id }) => ({
       list: async () => {
-        const response = await fetch(`https://api.iextrading.com/1.0/stock/market/batch?symbols=${id}&types=quote`)
+        const response = await fetch(`${apiDomain}/stock/market/batch?symbols=${id}&types=quote`)
         const jsonData = await response.json()
         return JSON.stringify(jsonData)
+      }
+    }),
+    symbols: () => ({
+      list: async () => {
+        const response = await fetch(`${apiDomain}/ref-data/symbols`)
+        const jsonData = await response.json()
+        return jsonData
       }
     })
   }
