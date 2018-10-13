@@ -11,6 +11,13 @@ const resolvers = {
         return JSON.stringify(jsonData)
       }
     }),
+    stocksChart: (_, { id }) => ({
+      list: async () => {
+        const response = await fetch(`${apiDomain}/stock/${id}/chart/1y`)
+        const jsonData = await response.json()
+        return jsonData
+      }
+    }),
     symbols: () => ({
       list: async () => {
         const response = await fetch(`${apiDomain}/ref-data/symbols`)
