@@ -1,5 +1,4 @@
 const fetch = require('node-fetch')
-const { getStocksList } = require('../api/stocks')
 const { apiDomain } = require('../constants/constants')
 
 const resolvers = {
@@ -11,9 +10,9 @@ const resolvers = {
         return JSON.stringify(jsonData)
       }
     }),
-    stocksChart: (_, { id }) => ({
+    stocksChart: (_, { id, range }) => ({
       list: async () => {
-        const response = await fetch(`${apiDomain}/stock/${id}/chart/1y`)
+        const response = await fetch(`${apiDomain}/stock/${id}/chart/${range}`)
         const jsonData = await response.json()
         return jsonData
       }

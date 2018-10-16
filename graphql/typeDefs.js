@@ -41,7 +41,7 @@ const typeDefs = gql`
   type Query {
     stocks(id: String): Stocks
     symbols: SymbolsList
-    stocksChart(id: String): StocksChart
+    stocksChart(id: String, range: String): StocksChart
   }
 `
 
