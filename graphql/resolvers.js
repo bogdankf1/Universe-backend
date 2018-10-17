@@ -23,6 +23,13 @@ const resolvers = {
         const jsonData = await response.json()
         return jsonData
       }
+    }),
+    cryptoCurrencies: () => ({
+      list: async () => {
+        const response = await fetch(`${apiDomain}/stock/market/crypto`)
+        const jsonData = await response.json()
+        return jsonData
+      }
     })
   }
 }
