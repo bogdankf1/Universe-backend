@@ -67,12 +67,32 @@ const typeDefs = gql`
   type CryptoCurrenciesData {
     list: [CryptoCurrenciesItem]
   }
+  
+  type NewsListItem {
+    datetime: String,
+    headline: String,
+    image: String,
+    related: String,
+    source: String,
+    summary: String,
+    url: String
+  }
+
+  type NewsList {
+    list: [NewsListItem]
+  }
+
+  type CompanyNewsList {
+    list: [NewsListItem]
+  }
 
   type Query {
     stocks(id: String): Stocks
     symbols: SymbolsList
     stocksChart(id: String, range: String): StocksChart
     cryptoCurrencies: CryptoCurrenciesData
+    news: NewsList
+    companyNews(id: String): CompanyNewsList
   }
 `
 

@@ -30,6 +30,20 @@ const resolvers = {
         const jsonData = await response.json()
         return jsonData
       }
+    }),
+    news: () => ({
+      list: async () => {
+        const response = await fetch(`${apiDomain}/stock/market/news`)
+        const jsonData = await response.json()
+        return jsonData
+      }
+    }),
+    companyNews: (_, { id }) => ({
+      list: async () => {
+        const response = await fetch(`${apiDomain}/stock/${id}/news`)
+        const jsonData = await response.json()
+        return jsonData
+      }
     })
   }
 }
