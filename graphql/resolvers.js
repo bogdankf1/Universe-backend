@@ -44,6 +44,20 @@ const resolvers = {
         const jsonData = await response.json()
         return jsonData
       }
+    }),
+    todayIPOs: () => ({
+      list: async () => {
+        const response = await fetch(`${apiDomain}/stock/market/today-ipos`)
+        const jsonData = await response.json()
+        return jsonData
+      }
+    }),
+    upcomingIPOs: () => ({
+      list: async () => {
+        const response = await fetch(`${apiDomain}/stock/market/upcoming-ipos`)
+        const jsonData = await response.json()
+        return jsonData
+      }
     })
   }
 }

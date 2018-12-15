@@ -86,13 +86,70 @@ const typeDefs = gql`
     list: [NewsListItem]
   }
 
+  type IPOsList {
+    list: IPOsListContent
+  }
+
+  type IPOsListContent {
+    rawData: [IPORawDataListItem],
+    viewData: [IPOViewDataListItem]
+  }
+
+  type IPOQuote {
+    latestPrice: Float,
+    changePercent: Float
+  }
+
+  type IPORawDataListItem {
+    address: String,
+    amount: Float,
+    auditor: String,
+    businessDescription: String,
+    ceo: String,
+    city: String,
+    companyDescription: String,
+    companyName: String,
+    employees: Float,
+    expectedDate: String,
+    market: String,
+    percentOffered: String,
+    phone: String,
+    priceHigh: Float,
+    priceLow: Float,
+    shareholderShares: Float,
+    sharesOffered: Float,
+    sharesOutstanding: Float,
+    sharesOverAlloted: Float,
+    state: String,
+    stockholderEquity: Float,
+    symbol: String,
+    url: String,
+    useOfProceeds: String,
+    zip: String
+  }
+
+  type IPOViewDataListItem {
+    Amount: String,
+    Company: String,
+    Expected: String,
+    Float: String,
+    Market: String,
+    Percent: String,
+    Price: String,
+    Shares: String,
+    Symbol: String,
+    quote: IPOQuote
+  }
+
   type Query {
     stocks(id: String): Stocks
     symbols: SymbolsList
     stocksChart(id: String, range: String): StocksChart
     cryptoCurrencies: CryptoCurrenciesData
     news: NewsList
-    companyNews(id: String): CompanyNewsList
+    companyNews(id: String): CompanyNewsList,
+    todayIPOs: IPOsList,
+    upcomingIPOs: IPOsList
   }
 `
 
