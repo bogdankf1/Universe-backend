@@ -151,6 +151,20 @@ const typeDefs = gql`
     todayIPOs: IPOsList,
     upcomingIPOs: IPOsList
   }
+
+  type UserLoginData {
+    username: String,
+    password: String,
+    token: String
+  }
+
+  type User {
+    data: UserLoginData
+  }
+
+  type Mutation {
+    login(username: String, password: String): User
+  }
 `
 
 module.exports.typeDefs = typeDefs
