@@ -1,5 +1,6 @@
 const fetch = require('node-fetch')
 const { apiDomain } = require('../constants/constants')
+const { loginData } = require('../constants/loginData')
 
 const resolvers = {
   Query: {
@@ -57,6 +58,21 @@ const resolvers = {
         const response = await fetch(`${apiDomain}/stock/market/upcoming-ipos`)
         const jsonData = await response.json()
         return jsonData
+      }
+    })
+  },
+  Mutation: {
+    login:  (_, { username, password }) => ({
+      data: async () => {
+        let loggedInUser
+
+        loginData.forEach(user => {
+          if (user.username === username && user.password === password) {
+            loggedInUser = user
+          }
+        })
+
+        return loggedInUser ? { ...loggedInUser } : null
       }
     })
   }
