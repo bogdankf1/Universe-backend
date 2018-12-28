@@ -158,12 +158,21 @@ const typeDefs = gql`
     token: String
   }
 
-  type User {
+  type UserRegisterData {
+    username: String
+  }
+
+  type LoginUser {
     data: UserLoginData
   }
 
+  type RegisterUser {
+    data: UserRegisterData
+  }
+
   type Mutation {
-    login(username: String, password: String): User
+    login(username: String, password: String): LoginUser
+    register(firstname: String, lastname: String, username: String, password: String): RegisterUser
   }
 `
 

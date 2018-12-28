@@ -74,6 +74,30 @@ const resolvers = {
 
         return loggedInUser ? { ...loggedInUser } : null
       }
+    }),
+    register: (_, { firstname, lastname, username, password }) => ({
+      data: async () => {
+        let isUserAlreadyExists
+
+        loginData.forEach(user => {
+          if (user.username === username) {
+            isUserAlreadyExists = true
+          }
+        })
+
+        if (isUserAlreadyExists) {
+          return null
+        }
+
+        loginData.push({
+          firstname,
+          lastname,
+          username,
+          password,
+          token: 'qqqqqqqqqqqqqqqqqqqqqq'
+        })
+        return { username }
+      }
     })
   }
 }
