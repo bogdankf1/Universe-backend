@@ -2,34 +2,22 @@ const Koa = require('koa')
 const Router = require('koa-router')
 const cors = require('koa2-cors')
 const bodyParser = require('koa-bodyparser')
-const { ApolloServer, gql } = require('apollo-server-koa')
+const { ApolloServer } = require('apollo-server-koa')
 const { hostname, port } = require('./constants/constants.js')
 const { getStocksList } = require('./api/stocks.js')
+const { typeDefs } = require('./graphql/typeDefs.js')
+const { resolvers } = require('./graphql/resolvers.js')
 
 const app = new Koa()
 const router = new Router()
 
-const typeDefs = gql`
-  type Greeting {
-    greeting: String
-  }
-
-  type Query {
-    hello: Greeting
-  }
-`
-
-const resolvers = {
-  Query: {
-    hello: {
-      greeting: () => 'Hello world!'
-    }
-  },
-}
-
 router.get('/stocks/list', getStocksList)
 
-const server = new ApolloServer({ typeDefs, resolvers })
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ ctx }) => ({ ctx })
+})
 server.applyMiddleware({ app })
 
 app.use(cors())
